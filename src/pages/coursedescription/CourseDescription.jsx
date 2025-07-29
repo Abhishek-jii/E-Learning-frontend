@@ -36,23 +36,15 @@ const CourseDescription = ({ user }) => {
           token,
         },
       }
-    ).then( async(response) => {
-      await fetchUser();
-          await fetchCourses();
-          await fetchMyCourse();
-          toast.success(response.data.message);
-          setLoading(false);
-           navigate(`/payment-success/${razorpay_payment_id}`);
-    })
-
+    );
 
     const options = {
-      key: "rzp_test_yOMeMyaj2wlvTt",
-      amount: order.id,
+      key: "rzp_test_acLcY5YLtdZwn9", // Enter the Key ID generated from the Dashboard
+      amount: order.id, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency: "INR",
-      name: "E learning",
+      name: "E learning", //your business name
       description: "Learn with us",
-      order_id: order.id,
+      order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
 
       handler: async function (response) {
         const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
